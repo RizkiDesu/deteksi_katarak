@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>{% block title %}{% endblock %}</title>
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing_page_style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/halaman_upload_data_style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/halaman_hasil_style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- <link rel="stylesheet" href="landing_page_style.css"> -->
+</head>
+<body>
+    <header>
+        <h1>POITECH</h1>
+    </header>
+    {% block content %}
+    
+    {% endblock %}
+    <footer>
+        <p>&copy; 2023 POITECH DEV. Hak Cipta Dilindungi.</p>
+    </footer>
+</body>
+</html>
