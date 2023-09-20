@@ -3,7 +3,7 @@
 Menggunakan:
 python 3.10.xx
 
-impoerd pack library: 
+import pack library: 
 pip install -r requirements.txt
 
 library manual: 
