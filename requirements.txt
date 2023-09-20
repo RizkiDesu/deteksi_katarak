@@ -1,6 +1,5 @@
-Flask                        2.3.3
-mysql-connector              2.2.9
-numpy                        1.24.3
-opencv-python                4.8.0.76
-Pillow                       10.0.1
-tensorflow                   2.13.0
+Flask
+tensorflow
+opencv-python
+Pillow
+mysql-connector-python
