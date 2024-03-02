@@ -31,7 +31,7 @@ Home
                         <th>pekerjan</th>
                         <th>Hasil</th>
                         <th>Added</th>
-                        <!-- <th>Edit Hasil</th> -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,11 +40,12 @@ Home
                             <td>{{item[0]}}</td>
                             <td>{{item[1]}}</td>
                             <td>{{item[2]}}</td>
-                            <td>{{item[3]}}</td>
+                            <td>{{item[6]}}</td>
                             <td>{{item[4]}}</td>
                             <td>{{item[5]}}</td>
                             <td>{{item[7]}}</td>
-                            <!-- <td><a href="/editHasil" type="button" class="btn btn-info btn-lg"><b>Edit</b></a></td> -->
+                            <td><a href="/editHasil/{{item[0]}}" type="button" class="btn btn-info btn-lg"><b>Edit</b></a></td>
+                            <td><a href="/HapusHasil/{{item[0]}}" type="button" class="btn btn-info btn-lg"><b>Hapus</b></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

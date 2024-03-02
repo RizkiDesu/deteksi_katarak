@@ -131,8 +131,6 @@ def deteksi():
             deteksi_hasil(hasil_deteksi)
             return render_template("halaman_hasil.html",id=id,nama=nama,nik=nik,kelamin=kelamin,ttl=ttl,pekerjaan=pekerjaan, hasil=hasil_deteksi)
             # return redirect(url_for('home'))
-        
-        
     else:
         # print("kualitas gambar kurang bagus")
         hasil_deteksi= "kualitas gambar kurang bagus edit!"
@@ -152,9 +150,38 @@ def index():
 
 #     return render_template('addprsn.html', newnbr=int(nbr))
 
+@app.route('/HapusHasil/<id>')
+def HapusHasil(id):
+    mycursor.execute("DELETE FROM datapendertakatarak WHERE `datapendertakatarak`.`id` = {}".format(id))
+    data = mycursor.fetchall()
+    return redirect(url_for('home'))
+
+
+# UPDATE datapendertakatarak SET  nama ='[value-2]', nik ='[value-3]', tangal_lahir ='[value-4]', pekerjaan ='[value-5]', kelamin ='[value-7]',hasil_deteksi='[value-8]' WHERE id='[value-1]'
+# DELETE FROM `datapendertakatarak` WHERE `datapendertakatarak`.`id` = 106
+@app.route('/editHasil/<id>')
+def editHasil(id):
+    mycursor.execute("SELECT * FROM `datapendertakatarak` WHERE id = {}".format(id))
+    data = mycursor.fetchone()
+    return render_template('edit.html', data=data)
+
+@app.route('/update_submit/<id>', methods=['POST'])
+def update_submit(id):
+    # id = request.form.get('txtnbr')
+    nama = request.form.get('txtname')
+    kelamin = request.form.get('kelamin')
+    nik = request.form.get('nik')
+    tanggal_lahir = request.form.get('tgl_lahir')
+    pekerjaan = request.form.get('Pekerjaan')
+    hasil = request.form.get('hasil')
+    mycursor.execute("UPDATE datapendertakatarak SET nama ='{}', nik = '{}', tangal_lahir = '{}', pekerjaan = '{}', kelamin = '{}',hasil_deteksi= '{}' WHERE id= {}".format(nama,nik,tanggal_lahir,pekerjaan,kelamin,hasil,id))
+    mydb.commit()
+    return redirect(url_for('home'))
+
+
 @app.route('/home')
 def home():
-    mycursor.execute("select id, nama, nik, kelamin, pekerjaan, hasil_deteksi, tangal_lahir, log from datapendertakatarak")
+    mycursor.execute("SELECT * FROM `datapendertakatarak`")
     data = mycursor.fetchall()
     return render_template('indexmin.html', data=data)
 
@@ -193,7 +220,6 @@ def upload_file():
     mycursor.execute("SELECT * FROM datapendertakatarak ORDER BY id DESC limit 1")
     data = mycursor.fetchall()
     file = request.files['image']
-    # f = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
     for item in data:
         id = item[0]
     file.save("uploads/{}.jpg" .format(id))

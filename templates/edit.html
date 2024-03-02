@@ -10,30 +10,64 @@ Img Upload
         <div class="col-lg-8 offset-lg-2">
             <h3>Add Personnel</h3>
             <hr>
-            <form class="form" method="post">
-
+            <form class="form" method="post" action="/update_submit/{{ data[0] }}">
+                <div class="form-group row">
+                    <label for="txtnbr" class="col-sm-2 col-form-label">Person Id</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="txtnbr" name="txtnbr" value='{{ data[0] }}' readonly>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="txtname" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-8">
-                        {{nama}}
+                        <input type="text" class="form-control" id="txtname" name="txtname" value='{{ data[1] }}'>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtname" class="col-sm-2 col-form-label">nik</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="nik" name="nik" value="{{ data[2] }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="optskill" class="col-sm-2 col-form-label">kelamin</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="kelamin" id="kelamin">
+                            <option {% if data[6] == 'Laki Laki' %} selected {% endif %} value="Laki Laki">Laki Laki</option>
+                            <option {% if data[6] == 'Perempuan' %} selected {% endif %} value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtname" class="col-sm-2 col-form-label">tanggal lahir</label>
+                    <div class="col-sm-8">
+                        <!-- <label for="tanda1">:</label> -->
+                        <input type="date" id="tgl_lahir" name="tgl_lahir" value="{{ data[3] }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtname" class="col-sm-2 col-form-label">Pekerjaan</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="Pekerjaan" name="Pekerjaan" value="{{ data[4] }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="optskill" class="col-sm-2 col-form-label">Hasil</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="hasil" id="hasil">
+                            <option {% if data[7] == 'katarak' %} selected {% endif %} value="katarak">Katarak</option>
+                            <option {% if data[7] == 'normal' %} selected {% endif %} value="normal">Normal</option>
+                            <option {% if data[7] == 'kualitas gambar kurang bagus edit!' %} selected {% endif %} value="kualitas gambar kurang bagus edit!">Error</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="optskill" class="col-sm-2 col-form-label">Update Hasil</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" name="update" id="update">
-                            <option value="katarak">katarak</option>
-                            <option value="normal">normal</option>
-                        </select>
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <input type="submit" class="btn btn-primary btn-lg" value="Update">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-8">
-                            <input type="submit" class="btn btn-primary btn-lg" value="Edit">
-                            <!-- <a href="/" type="button" class="btn btn-warning btn-lg"><b>Back</b></a> -->
-                        </div>
-                    </div>
+                </div>
             </form>
         </div>
     </div>
