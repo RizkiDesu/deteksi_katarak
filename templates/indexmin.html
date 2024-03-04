@@ -11,13 +11,9 @@ Home
             <hr>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="/addprsn" type="button" class="btn btn-success btn-lg"><b>Add</b></a>
+                    <a href="/addprsn" type="button" class="btn btn-primary"><b>Add</b></a>
                 </div>
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-4">
-                    <a href="/" type="button" class="btn btn-info btn-lg"><b>Exit</b></a>
-                </div>
+                
             </div>
             <!-- <img src="../uploads/101.jpg" alt="image" width="500"> -->
             <!-- <img src="{{ url_for('static', filename='../uploads/101.jpg') }}" alt="Your Image"> -->
@@ -26,12 +22,12 @@ Home
             <table class="table" style="width: 80%">
                 <thead>
                     <tr>
-                        <th>Person Id</th>
+                        <th>#</th>
                         <th>Img</th>
                         <th>Name</th>
                         <th>Nik</th>
                         <th>Kelamin</th>
-                        <th>pekerjan</th>
+                        <th>Pekerjan</th>
                         <th>Hasil</th>
                         <th>Added</th>
                         <th>Action</th>
@@ -42,23 +38,36 @@ Home
                         <tr>
                             <td>{{item[0]}}</td>
                             <td>
-                                <!-- <img src="{{url_for('static', filename='101.png')}}align="middle" /> -->
                                 <img src="{{ url_for('static', filename='{}.jpg'.format(item[0])) }}" alt="Your Image {{item[0]}}" width="50px" height="50px" style="border-radius: 50px;">
                             </td>
                             <td>{{item[1]}}</td>
                             <td>{{item[2]}}</td>
                             <td>{{item[6]}}</td>
                             <td>{{item[4]}}</td>
-                            <td>{{item[5]}}</td>
+                            <td style="min-width: 110px">
+                                {{item[5]}}
+                            </td>
                             <td>{{item[7]}}</td>
-                            <td><a href="/editHasil/{{item[0]}}" type="button" class="btn btn-info btn-lg"><b>Edit</b></a></td>
-                            <td><a href="/HapusHasil/{{item[0]}}" type="button" class="btn btn-info btn-lg"><b>Hapus</b></a></td>
+                            <td class="flex" style="min-width: 170px">
+                                <a href="/editHasil/{{item[0]}}" type="button" class="btn btn-secondary btn-sm"><b>Edit</b></a>
+                                <a href="/HapusHasil/{{item[0]}}" type="button" class="btn btn-danger btn-sm"><b>Hapus</b></a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
 
             </table>
+            <hr>
+            <div class="position-relative float-right">
+                <a href="/" type="button" class="btn btn-dark "><b>Exit</b></a>
+            </div>
+            <br>
+            <br>
+            <br>
         </div>
+        
     </div>
+
+    
 </section>
 {% endblock %}
