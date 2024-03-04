@@ -8,7 +8,12 @@ Img Upload
 <section class="py-1">
     <div class="row mt-5">
         <div class="col-lg-8 offset-lg-2">
-            <h3>Add Personnel</h3>
+            <h3>Edit Personnel</h3>
+            <hr>
+            <div class="row">
+                <label for="">Image :</label>
+                <img src="{{ url_for('static', filename='{}.jpg'.format(data[0])) }}" alt="Your Image {{ data[0] }}" width="100px" height="100px" style="border-radius: 50px;">
+            </div>
             <hr>
             <form class="form" method="post" action="/update_submit/{{ data[0] }}">
                 <div class="form-group row">

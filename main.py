@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, Response
 import mysql.connector
 import os
@@ -107,7 +106,7 @@ def deteksi():
         kelamin = item[6]
         # hasil = item[7]
         
-    input = "uploads/{}.jpg" .format(id)
+    input = "static/{}.jpg" .format(id)
     modelMata = 'model/haarcascade_eye.xml'
     modelKatarak = 'model/deteksiKatarak.h5'
     kanan = 'gambar/mata/mata_0.jpg'
@@ -142,23 +141,13 @@ def deteksi():
 def index():
     return render_template('index.html')
 
-# @app.route('/user')
-# def user():
-#     mycursor.execute("select ifnull(max(id) + 1, 101) from datapendertakatarak")
-#     row = mycursor.fetchone()
-#     nbr = row[0]
-
-#     return render_template('addprsn.html', newnbr=int(nbr))
-
 @app.route('/HapusHasil/<id>')
 def HapusHasil(id):
     mycursor.execute("DELETE FROM datapendertakatarak WHERE `datapendertakatarak`.`id` = {}".format(id))
-    data = mycursor.fetchall()
+    # data = mycursor.fetchone()
+    mydb.commit()
     return redirect(url_for('home'))
 
-
-# UPDATE datapendertakatarak SET  nama ='[value-2]', nik ='[value-3]', tangal_lahir ='[value-4]', pekerjaan ='[value-5]', kelamin ='[value-7]',hasil_deteksi='[value-8]' WHERE id='[value-1]'
-# DELETE FROM `datapendertakatarak` WHERE `datapendertakatarak`.`id` = 106
 @app.route('/editHasil/<id>')
 def editHasil(id):
     mycursor.execute("SELECT * FROM `datapendertakatarak` WHERE id = {}".format(id))
@@ -222,24 +211,9 @@ def upload_file():
     file = request.files['image']
     for item in data:
         id = item[0]
-    file.save("uploads/{}.jpg" .format(id))
+    file.save("static/{}.jpg" .format(id))
+    # file.save("static/{}.jpg" .format(id))
     return redirect(url_for('deteksi'))
-
-# @app.route('/editHasil', methods=['POST'])
-# def editHasil():
-#     mycursor.execute("SELECT * FROM datapendertakatarak ORDER BY id DESC limit 1")
-#     data = mycursor.fetchall()
-#     for item in data:
-#         id = item[0]
-#     hasil = request.form.get('update')
-#     mycursor.execute(""""UPDATE `datapendertakatarak` SET `hasil_deteksi` = '{}' WHERE `datapendertakatarak`.`id` = 101;""".format(hasil,id))
-
-#     # mycursor.execute("""UPDATE `datapendertakatarak` SET `hasil_deteksi` = '{}' WHERE `datapendertakatarak`.`id` = '{}';""".format(katarak,id))
-#     mydb.commit()
-
-#     # nn= "UPDATE `datapendertakatarak` SET `hasil_deteksi` = 'normal' WHERE `datapendertakatarak`.`id` = 101;"
-
-#     return redirect(url_for('deteksi'))
 
 if __name__ == "__main__":
 
