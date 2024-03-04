@@ -104,7 +104,6 @@ def deteksi():
         ttl = item[3]
         pekerjaan = item[4]
         kelamin = item[6]
-        # hasil = item[7]
         
     input = "static/{}.jpg" .format(id)
     modelMata = 'model/haarcascade_eye.xml'
@@ -124,17 +123,14 @@ def deteksi():
             hasil_deteksi= "normal"
             deteksi_hasil(hasil_deteksi)
             return render_template("halaman_hasil.html",id=id,nama=nama,nik=nik,kelamin=kelamin,ttl=ttl,pekerjaan=pekerjaan, hasil=hasil_deteksi)
-            # return redirect(url_for('home'))
         else:
             hasil_deteksi= "katarak"
             deteksi_hasil(hasil_deteksi)
             return render_template("halaman_hasil.html",id=id,nama=nama,nik=nik,kelamin=kelamin,ttl=ttl,pekerjaan=pekerjaan, hasil=hasil_deteksi)
-            # return redirect(url_for('home'))
     else:
         # print("kualitas gambar kurang bagus")
         hasil_deteksi= "kualitas gambar kurang bagus edit!"
         deteksi_hasil(hasil_deteksi)
-        # return redirect(url_for('home'))
         return render_template("halaman_hasil.html",id=id,nama=nama,nik=nik,kelamin=kelamin,ttl=ttl,pekerjaan=pekerjaan, hasil=hasil_deteksi)
 
 @app.route('/')
@@ -144,7 +140,6 @@ def index():
 @app.route('/HapusHasil/<id>')
 def HapusHasil(id):
     mycursor.execute("DELETE FROM datapendertakatarak WHERE `datapendertakatarak`.`id` = {}".format(id))
-    # data = mycursor.fetchone()
     mydb.commit()
     return redirect(url_for('home'))
 
@@ -156,7 +151,6 @@ def editHasil(id):
 
 @app.route('/update_submit/<id>', methods=['POST'])
 def update_submit(id):
-    # id = request.form.get('txtnbr')
     nama = request.form.get('txtname')
     kelamin = request.form.get('kelamin')
     nik = request.form.get('nik')
